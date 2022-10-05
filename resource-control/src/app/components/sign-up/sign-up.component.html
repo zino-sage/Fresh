@@ -1,0 +1,29 @@
+<div class="form-container mat-elevation-z5">
+    <h1>Sign Up</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+        <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name" (cdkAutofill)="false" />
+            <mat-error *ngIf="name?.errors?.['required']">Email is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Email Address" formControlName="email" (cdkAutofill)="false" />
+            <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+            <mat-error *ngIf="email?.errors?.['email']">Please enter a correct email format</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" type="password" (cdkAutofill)="false" />
+            <mat-error *ngIf="password?.errors?.['required']">Please enter correct password</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password" (cdkAutofill)="false" />
+            <mat-error *ngIf="confirmPassword?.errors?.['required']">Please enter correct password</mat-error>
+        </mat-form-field> 
+        <div class="center margin-top">
+            <button mat-raised-button color="primary" type="submit">Sign Up</button>
+
+        </div>
+        <div class="center margin-top">
+            <span>New to this plaform? <a class="sign-up-link" routerLink="/sign-up">Sign Up</a></span>
+        </div>
+    </form>
+</div>
