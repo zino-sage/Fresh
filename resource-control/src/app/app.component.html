@@ -18,6 +18,10 @@
   <router-outlet></router-outlet>
 </div>
 <mat-menu #userMenu="matMenu">
+  <button mat-button routerLink="profile">
+    <mat-icon>profile</mat-icon>
+    Profile
+  </button>
   <button mat-button (click)="logout()">
     <mat-icon>logout</mat-icon>
     Logout
