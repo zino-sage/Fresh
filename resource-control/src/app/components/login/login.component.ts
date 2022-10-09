@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.toast.observe({
         success: 'Logged in successfully',
         loading: 'Logging in...',
-        error: 'E don cast! Error'
+        error :  ({message}) => `${message}` + ' E don cast! Error'
       })
     ).subscribe(() => {
       this.router.navigate(['/home'])
