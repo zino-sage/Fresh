@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, updateProfile, UserInfo } from '@angular/fire/auth';
 import { signInWithEmailAndPassword } from '@firebase/auth';
-import { from, switchMap } from 'rxjs';
+import {  } from '@firebase/util';
+import { from, switchMap, Observable, concatMap, of } from 'rxjs';
 import { LoginComponent } from '../components/login/login.component';
 
 @Injectable({
@@ -23,6 +24,17 @@ export class AuthenticationService {
 
   logout() {
     return from(this.auth.signOut());
+  }
+
+  updateProfileData(profileData: Partial<UserInfo>): Observable<any>{
+    const user = this.auth.currentUser;
+    return of(user).pipe(
+      concatMap(user => {
+        if(!user) throw new Error('Not Authenticated')
+
+        return updateProfile(user, profileData)
+      })
+    )
   }
 }
 
